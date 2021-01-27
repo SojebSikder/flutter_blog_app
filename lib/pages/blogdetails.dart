@@ -26,6 +26,8 @@ class _BlogDetailsState extends State<BlogDetails> {
                 padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
                 child: Column(
                   children: [
+
+                    // Title
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SelectableText(
@@ -38,6 +40,8 @@ class _BlogDetailsState extends State<BlogDetails> {
                         ),
                       ),
                     ),
+                    //
+                    // Author
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Align(
@@ -56,6 +60,8 @@ class _BlogDetailsState extends State<BlogDetails> {
                         ),
                       ),
                     ),
+                    //
+                    // Description
                     Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: SelectableText(

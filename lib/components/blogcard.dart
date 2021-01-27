@@ -5,6 +5,10 @@ import 'package:flutterblogapp/helpers/blog.dart';
 import 'package:flutterblogapp/models/blog_model.dart';
 import 'package:flutterblogapp/pages/blogdetails.dart';
 
+enum WhyFarther {
+  save,
+}
+
 class BlogCard extends StatefulWidget {
   @override
   _BlogCardState createState() => _BlogCardState();
@@ -80,22 +84,38 @@ class Single_blog extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 8.0),
+            padding: const EdgeInsets.all(4.0),
             child: Column(
               children: [
                 ListTile(
-                  title: Container(
-                    width: 300,
-                    height: 50,
-                    child: SelectableText(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.0,
+                  title: Row(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width - 104,
+                        height: 50,
+                        child: SelectableText(
+                          title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0,
+                          ),
+                        ),
                       ),
-                    ),
+                      //
+                      // Dropdown Menu
+                      PopupMenuButton<WhyFarther>(
+                        onSelected: (WhyFarther result) {},
+                        itemBuilder: (BuildContext context) =>
+                            <PopupMenuEntry<WhyFarther>>[
+                          const PopupMenuItem<WhyFarther>(
+                            value: WhyFarther.save,
+                            child: Text('Save'),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                   subtitle: Column(
                     children: [
