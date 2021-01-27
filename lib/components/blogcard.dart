@@ -97,17 +97,52 @@ class Single_blog extends StatelessWidget {
                       ),
                     ),
                   ),
-                  subtitle: Container(
-                    child: SelectableText(
-                      description.length > 400
-                          ? description.substring(0, 400)
-                          : description,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w100,
+                  subtitle: Column(
+                    children: [
+                      Container(
+                        child: SelectableText(
+                          description.length > 400
+                              ? description.substring(0, 400)
+                              : description,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w100,
+                          ),
+                        ),
                       ),
-                    ),
+                      // Read more Button
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(14.0, 8.0, 14.0, 8.0),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: Colors.red.shade700,
+                          elevation: 0.0,
+                          child: MaterialButton(
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BlogDetails(
+                                  title: title,
+                                  description: description,
+                                ),
+                              ),
+                            ),
+                            minWidth: MediaQuery.of(context).size.width,
+                            child: Text(
+                              "Read more",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
