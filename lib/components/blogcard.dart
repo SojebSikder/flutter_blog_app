@@ -71,39 +71,46 @@ class Single_blog extends StatelessWidget {
       child: Material(
         child: InkWell(
           onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => BlogDetails(
-                        title: title,
-                        description: description,
-                      ))),
+            context,
+            MaterialPageRoute(
+              builder: (context) => BlogDetails(
+                title: title,
+                description: description,
+              ),
+            ),
+          ),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 8.0),
-            child: ListTile(
-              title: Container(
-                child: Column(
-                  children: [
-                    SelectableText(
+            child: Column(
+              children: [
+                ListTile(
+                  title: Container(
+                    width: 300,
+                    height: 50,
+                    child: SelectableText(
                       title,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
                         fontSize: 20.0,
                       ),
                     ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    SelectableText(
-                      description.substring(0, 10),
+                  ),
+                  subtitle: Container(
+                    child: SelectableText(
+                      description.length > 400
+                          ? description.substring(0, 400)
+                          : description,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w100,
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ),
