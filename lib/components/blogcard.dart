@@ -106,11 +106,12 @@ class Single_blog extends StatelessWidget {
                               : description,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.w100,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
+                      //
                       // Read more Button
                       Padding(
                         padding:
