@@ -18,9 +18,9 @@ class _BlogCardState extends State<BlogCard> {
   getBlog() async {
     Blog blogclass = Blog();
     await blogclass.getBlog();
-    bloglist = blogclass.blogs;
     setState(() {
       _loading = false;
+      bloglist = blogclass.blogs;
     });
   }
 
@@ -33,25 +33,32 @@ class _BlogCardState extends State<BlogCard> {
 
   @override
   Widget build(BuildContext context) {
-    return _loading
-        ? Center(
-            child: Container(
-              child: CircularProgressIndicator(),
-            ),
-          )
-        : ListView.builder(
-            itemCount: bloglist.length,
-            shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Single_blog(
-                  title: bloglist[index].title,
-                  description: bloglist[index].description,
+    return RefreshIndicator(
+      onRefresh: () {
+        return getBlog();
+      },
+      child: Container(
+        child: _loading
+            ? Center(
+                child: Container(
+                  child: CircularProgressIndicator(),
                 ),
-              );
-            },
-          );
+              )
+            : ListView.builder(
+                itemCount: bloglist.length,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Single_blog(
+                      title: bloglist[index].title,
+                      description: bloglist[index].description,
+                    ),
+                  );
+                },
+              ),
+      ),
+    );
   }
 }
 
