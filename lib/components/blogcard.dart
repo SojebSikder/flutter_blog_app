@@ -68,43 +68,40 @@ class Single_blog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Hero(
-        tag: title,
-        child: Material(
-          child: InkWell(
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => BlogDetails(
-                          title: title,
-                          description: description,
-                        ))),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 8.0),
-              child: ListTile(
-                title: Container(
-                  child: Column(
-                    children: [
-                      SelectableText(
-                        title,
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
-                        ),
+      child: Material(
+        child: InkWell(
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => BlogDetails(
+                        title: title,
+                        description: description,
+                      ))),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 8.0),
+            child: ListTile(
+              title: Container(
+                child: Column(
+                  children: [
+                    SelectableText(
+                      title,
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
                       ),
-                      SizedBox(
-                        height: 10.0,
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    SelectableText(
+                      description.substring(0, 10),
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w100,
                       ),
-                      SelectableText(
-                        description.substring(0, 10),
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w100,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
