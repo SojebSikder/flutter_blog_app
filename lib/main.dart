@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterblogapp/pages/Home.dart';
+import 'package:flutterblogapp/pages/signup.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,9 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Blog',
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.black26,
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: SignUp(),
     );
   }
 }

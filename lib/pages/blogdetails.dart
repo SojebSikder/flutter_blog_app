@@ -14,7 +14,6 @@ class _BlogDetailsState extends State<BlogDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black12,
       appBar: AppBar(
         title: Text(widget.title),
         centerTitle: true,
@@ -24,33 +23,45 @@ class _BlogDetailsState extends State<BlogDetails> {
           children: [
             ListTile(
               title: Padding(
-                padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 8.0),
+                padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
                 child: Column(
                   children: [
-                    SelectableText(
-                      widget.title,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.0,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SelectableText(
+                        widget.title,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                        ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Align(
                         alignment: Alignment.topLeft,
-                        child: Text(
-                          "Author: SojebSikder",
+                        child: RichText(
+                          text: TextSpan(
+                            text: "Author: ",
+                            style: TextStyle(color: Colors.white),
+                            children: [
+                              TextSpan(
+                                text: "SojebSikder",
+                                style: TextStyle(color: Colors.redAccent),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 8.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: SelectableText(
                         widget.description,
                         style: TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 16.0,
                           fontWeight: FontWeight.w100,
                           color: Colors.white,
                         ),
