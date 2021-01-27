@@ -21,15 +21,24 @@ class _SignUpState extends State<SignUp> {
       body: SafeArea(
           child: Stack(
         children: [
+          // Background Image
+          /*  Image.asset(
+              "images/logo.png",
+              fit: BoxFit.fill,
+              width: double.infinity,
+              height: double.infinity,
+            ), */
+          // Background overlay color
           Container(
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.blueAccent, //withOpacity(0.4),
             width: double.infinity,
             height: double.infinity,
           ),
+          // Logo
           Container(
             alignment: Alignment.topCenter,
             child: Image.asset(
-              "images/logo.png",
+              "assets/images/logo.png",
               width: 150.0,
               height: 150.0,
             ),
@@ -86,6 +95,7 @@ class _SignUpState extends State<SignUp> {
                               icon: Icon(Icons.email),
                               border: InputBorder.none,
                             ),
+                            keyboardType: TextInputType.emailAddress,
                             validator: (value) {
                               if (value.isEmpty) {
                                 return "Please enter email";
@@ -107,6 +117,7 @@ class _SignUpState extends State<SignUp> {
                           padding: const EdgeInsets.only(left: 12.0),
                           child: TextFormField(
                             controller: _passwordTextController,
+                            obscureText: true,
                             decoration: InputDecoration(
                               labelText: "Password",
                               hintText: "Password",
@@ -119,6 +130,49 @@ class _SignUpState extends State<SignUp> {
                               }
                               return null;
                             },
+                          ),
+                        ),
+                      ),
+                    ),
+                    //
+                    // Sign up button
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(14.0, 8.0, 14.0, 8.0),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(20.0),
+                        color: Colors.red.shade700,
+                        elevation: 0.0,
+                        child: MaterialButton(
+                          onPressed: () async {
+                            //validateForm();
+                          },
+                          minWidth: MediaQuery.of(context).size.width,
+                          child: Text(
+                            "Sign up",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    //
+                    // Log In page link
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          //Navigator.pop(context);
+                        },
+                        child: Text(
+                          "Already have an account? Login",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.0,
                           ),
                         ),
                       ),

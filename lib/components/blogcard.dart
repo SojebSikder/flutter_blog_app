@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutterblogapp/helpers/blog.dart';
+import 'package:flutterblogapp/models/blog_model.dart';
 import 'package:flutterblogapp/pages/blogdetails.dart';
 
 class BlogCard extends StatefulWidget {
@@ -7,58 +11,47 @@ class BlogCard extends StatefulWidget {
 }
 
 class _BlogCardState extends State<BlogCard> {
-  var blog_list = [
-    {
-      "title": "What is Lorem Ipsum?",
-      "description":
-          '''Lorem Ipsum is simply dummy text of the printing and typesetting 
-          industry. Lorem Ipsum has been the industry's standard dummy 
-          text ever since the 1500s, when an unknown printer took 
-          a galley of type and scrambled it to make a type specimen 
-          book. It has survived not only five centuries, but also 
-          the leap into electronic typesetting, remaining essentially 
-          unchanged. It was popularised in the 1960s with the release 
-          of Letraset sheets containing Lorem Ipsum passages, 
-          and more recently with desktop publishing software like Aldus 
-          PageMaker including versions of Lorem Ipsum.
-          
-          Lorem Ipsum is simply dummy text of the printing and typesetting 
-          industry. Lorem Ipsum has been the industry's standard dummy 
-          text ever since the 1500s, when an unknown printer took 
-          a galley of type and scrambled it to make a type specimen 
-          book. It has survived not only five centuries, but also 
-          the leap into electronic typesetting, remaining essentially 
-          unchanged. It was popularised in the 1960s with the release 
-          of Letraset sheets containing Lorem Ipsum passages, 
-          and more recently with desktop publishing software like Aldus 
-          PageMaker including versions of Lorem Ipsum.
-          
-          
-          ''',
-    },
-    {
-      "title": "Bangladesh",
-      "description": "Bangladesh is our country",
-    },
-    {
-      "title": "India",
-      "description": "India is a country",
-    },
-  ];
+  // Initialize variables
+  List<BlogModel> bloglist = new List<BlogModel>();
+  bool _loading = true;
+  // Methods
+  getBlog() async {
+    Blog blogclass = Blog();
+    await blogclass.getBlog();
+    bloglist = blogclass.blogs;
+    setState(() {
+      _loading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getBlog();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: blog_list.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: Single_blog(
-            title: blog_list[index]['title'],
-            description: blog_list[index]['description'],
-          ),
-        );
-      },
-    );
+    return _loading
+        ? Center(
+            child: Container(
+              child: CircularProgressIndicator(),
+            ),
+          )
+        : ListView.builder(
+            itemCount: bloglist.length,
+            shrinkWrap: true,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Single_blog(
+                  title: bloglist[index].title,
+                  description: bloglist[index].description,
+                ),
+              );
+            },
+          );
   }
 }
 
