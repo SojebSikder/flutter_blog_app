@@ -14,13 +14,63 @@ class _BlogDetailsState extends State<BlogDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black12,
       appBar: AppBar(
         title: Text(widget.title),
+        centerTitle: true,
       ),
-      body: Container(
-        child: ListTile(
-          title: SelectableText(widget.title),
-          subtitle: SelectableText(widget.description),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ListTile(
+              title: Padding(
+                padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 8.0),
+                child: Column(
+                  children: [
+                    SelectableText(
+                      widget.title,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Author: SojebSikder",
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 8.0),
+                      child: SelectableText(
+                        widget.description,
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w100,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // subtitle: Padding(
+              //   padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 8.0),
+              //   child: SelectableText(
+              //     widget.description,
+              //     style: TextStyle(
+              //       fontSize: 20.0,
+              //       fontWeight: FontWeight.w100,
+              //     ),
+              //   ),
+              // ),
+            ),
+          ],
         ),
       ),
     );
