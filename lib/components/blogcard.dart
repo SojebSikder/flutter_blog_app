@@ -15,7 +15,7 @@ class _BlogCardState extends State<BlogCard> {
   List<BlogModel> bloglist = new List<BlogModel>();
   bool _loading = true;
   // Methods
-  getBlog() async {
+  Future<Null> getBlog() async {
     Blog blogclass = Blog();
     await blogclass.getBlog();
     setState(() {
@@ -34,9 +34,7 @@ class _BlogCardState extends State<BlogCard> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () {
-        return getBlog();
-      },
+      onRefresh: getBlog,
       child: Container(
         child: _loading
             ? Center(
